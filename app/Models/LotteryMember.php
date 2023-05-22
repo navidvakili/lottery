@@ -9,4 +9,9 @@ class LotteryMember extends Model
 {
     use HasFactory;
     protected $fillable = ['lottery_id', 'client_id', 'vahed'];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id', 'id');
+    }
 }

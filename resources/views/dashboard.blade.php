@@ -47,7 +47,9 @@
                     @foreach ($lottery_members as $item)
                     <tr>
                         <td>{{ $lottery_members->firstItem() + $key }}</td>
-                        <td>{{ $item->title }}</td>
+                        <td>{{ $item->client->nationalcode }}</td>
+                        <td>{{ $item->client->name }}</td>
+                        <td>{{ $item->vahed }}</td>
                     </tr>
                     @endforeach
                 </tbody>
