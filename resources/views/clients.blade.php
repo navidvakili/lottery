@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'فهرست گروه ها')
+@section('page_title', 'فهرست متقاضیان :: '.$group->title)
 
 @section('content')
 <x-alert :messages="$errors->any()?$errors:session()->get('message')" />
@@ -8,7 +8,6 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-end">
-                    <a href="{{ route('groups.create') }}" class="btn btn-info">جدید</a>
                 </div>
             </div>
             <div class="card-body">
@@ -18,26 +17,26 @@
                         <thead>
                             <tr>
                                 <th>ردیف</th>
-                                <th>عنوان گروه</th>
+                                <th>شماره ملی</th>
+                                <th>نام و نام خانوادگی</th>
                                 <th>وضعیت</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php($key=0)
-                            @foreach ($groups as $item)
+                            @foreach ($clients as $item)
                             <tr>
-                                <td>{{ $groups->firstItem() + $key }}</td>
-                                <td>{{ $item->title }}</td>
+                                <td>{{ $clients->firstItem() + $key }}</td>
+                                <td>{{ $item->nationalcode }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td>
-                                    <a href="{{ route('clients.index', $item->id) }}"> متقاضیان</a> |
-                                    <a href="{{ route('groups.edit', $item->id) }}">ویرایش</a> |
-                                    <a href="{{ route('groups.index') }}" onclick="event.preventDefault(); if(confirm('آیا از حذف مطمئن هستید?')){
+                                    <a href="{{ route('clients.index', $group->id) }}" onclick="event.preventDefault(); if(confirm('آیا از حذف مطمئن هستید?')){
                                                                                                                 document.getElementById(
                                                                                                                   'delete-form-{{ $item->id }}').submit();}">
                                         حذف
                                     </a>
                                 </td>
-                                <form id="delete-form-{{ $item->id }}" + action="{{ route('groups.destroy', $item->id) }}" method="post">
+                                <form id="delete-form-{{ $item->id }}" + action="{{ route('clients.destroy', $item->id) }}" method="post">
                                     @csrf @method('DELETE')
                                 </form>
                             </tr>

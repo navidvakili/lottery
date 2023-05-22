@@ -28,13 +28,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end nav-link-menu" aria-labelledby="nav1">
                                     <ul class="nav-list">
-                                        <li><a href="." class="dropdown-item"><i class="fas fa-list"></i> داشبورد</a></li>
+                                        <li><a href="/" class="dropdown-item"><i class="fas fa-list"></i> داشبورد</a></li>
                                         <div class="dropdown-divider"></div>
                                         <li><a href="{{ route('lottery.index') }}" class="dropdown-item"><i class="fas fa-list"></i> فهرست قرعه کشی</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="{{ route('groups.index') }}" class="dropdown-item"><i class="fas fa-database"></i> گروه ها</a></li>
+                                        <li><a href="{{ route('groups.index') }}" class="dropdown-item"><i class="fas fa-database"></i> گروه ها و متقاضیان</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> بارگذاری متقاضیان</a></li>
+                                        <li><a href="{{ route('excel.import') }}" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> بارگذاری متقاضیان</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -54,9 +54,9 @@
             </div>
         </div>
     </div>
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
