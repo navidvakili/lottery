@@ -48,6 +48,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {!! $lottery->links( "pagination::bootstrap-4") !!}
+                    </div>
                 </div>
             </div>
         </div>
