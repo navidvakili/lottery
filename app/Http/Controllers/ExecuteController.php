@@ -29,11 +29,12 @@ class ExecuteController extends Controller
         $peoples = $lottery_default->group->members->shuffle();
 
 
-        $check = 1;
         $lottered_num = 0;
 
+        $vaheds = range($request->min_vahed, $request->max_vahed);
+
         foreach ($peoples as $people) {
-            $vahed = null;
+            if (sizeof($vaheds) == 0) break;
             $check_member = LotteryMember::where('lottery_id', $lottery_default->id)
                 ->where('client_id', $people->id)
                 ->count();
@@ -41,7 +42,18 @@ class ExecuteController extends Controller
             if ($check_member > 0) continue;
 
             while (1) {
+                $vahed = null;
+                if (sizeof($vaheds) == 0) break;
+
                 $vahed = mt_rand($request->min_vahed, $request->max_vahed);
+
+                if (in_array($vahed, $vaheds)) {
+                    $key = array_search($vahed, $vaheds);
+                    if (false !== $key) {
+                        unset($vaheds[$key]);
+                    }
+                }
+
                 $check = LotteryMember::where('lottery_id', $lottery_default->id)->where('vahed', $vahed)->count();
                 if ($check == 0) break;
             }
@@ -51,5 +63,7 @@ class ExecuteController extends Controller
             }
             if ($num == $lottered_num) break;
         }
+
+        return redirect()->back()->with('message', 'تعداد ' . $lottered_num . ' نفر قرعه کشی شد');
     }
 }
