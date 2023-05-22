@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\ExecuteController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LotteryController;
+use App\Models\Group;
+use App\Models\Lottery;
+use App\Models\LotteryMember;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-
+Route::get('/', [ExecuteController::class, 'index'])->name('exceute.index');
+Route::post('/', [ExecuteController::class, 'store'])->name('execute.store');
 
 Route::resource('groups', GroupController::class);
 

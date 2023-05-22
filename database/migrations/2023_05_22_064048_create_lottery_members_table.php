@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('lottery_id')->references('id')->on('lotteries');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->string('vahed')->nullable();
             $table->timestamps();
         });
     }
