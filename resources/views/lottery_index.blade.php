@@ -31,7 +31,7 @@
                                 <td>{{ $lottery->firstItem() + $key }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->group->title }}</td>
-                                <td><i class="fa fa-check"></i></td>
+                                <td><a href="{{ route('lottery.default', $item->id) }}" onclick="return confirm('آیا از تغییر پیش فرض مطمئن هستید?')"><i class="fa fa-{{ ($item->default == 0)?'times':'check' }}"></i></td>
                                 <td>
                                     <a href="{{ route('lottery.edit', $item->id) }}">ویرایش</a> |
                                     <a href="{{ route('lottery.show', $item->id) }}">نتایج</a> |

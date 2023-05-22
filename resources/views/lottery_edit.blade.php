@@ -20,7 +20,7 @@
                         <select name="group" id="groups" class="form-select" required="">
                             <option value="" selected="">یک گزینه را انتخاب کنید</option>
                             @foreach ($groups as $group)
-                            <option value="{{ $group->id }}">{{ $group->title }}</option>
+                            <option value="{{ $group->id }}" {{ ($lottery->group_id == $group->id)?'selected':'' }}>{{ $group->title }}</option>
                             @endforeach
                         </select>
                     </div>

@@ -23,7 +23,10 @@ Route::get('/', function () {
 
 
 Route::resource('groups', GroupController::class);
+
 Route::resource('lottery', LotteryController::class);
+Route::get('lottery/default/{lottery}', [LotteryController::class, 'default'])->name('lottery.default');
+
 Route::get('excel', [ExcelController::class, 'import'])->name('excel.import');
 Route::post('excel', [ExcelController::class, 'store'])->name('excel.store');
 

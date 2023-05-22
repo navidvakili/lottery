@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Lottery;
+use App\Models\LotteryMember;
 use Illuminate\Http\Request;
 
 class LotteryController extends Controller
@@ -14,7 +15,7 @@ class LotteryController extends Controller
     public function index()
     {
         $lottery = Lottery::orderBy('created_at', 'desc')->paginate(20);
-        return view('lottery_list', compact('lottery'));
+        return view('lottery_index', compact('lottery'));
     }
 
     /**
@@ -37,6 +38,7 @@ class LotteryController extends Controller
         ]);
 
         Lottery::create(['title' => $request->title, 'group_id' => $request->group]);
+        return redirect()->route('lottery.index')->with('message', 'گروه قرعه کشی ' . $request->title . ' با موفقیت ذخیره شد');
     }
 
     /**
@@ -52,22 +54,43 @@ class LotteryController extends Controller
      */
     public function edit(Lottery $lottery)
     {
-        // return view('lotte')
+        $groups = Group::has('members')->orderBy('created_at', 'desc')->paginate(20);
+        return view('lottery_edit', compact('lottery', 'groups'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, lottery $lottery)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'group' => 'required'
+        ]);
+
+        $lottery->update(['title' => $request->title, 'group_id' => $request->group]);
+        return redirect()->route('lottery.index')->with('message', 'گروه قرعه کشی ' . $request->title . ' با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Lottery $lottery)
     {
-        //
+        $lottery_members = LotteryMember::where('lottery_id', $lottery->id)->count();
+
+        if ($lottery_members > 0)
+            return redirect()->route('lottery.index')->withErrors('بدلیل وجود تعدادی متقاضی در این قرعه کشی، امکان حذف وجود ندارد');
+
+        $lottery->delete();
+
+        return redirect()->route('lottery.index')->with('message', 'قرعه کشی ' . $lottery->title . ' با موفقیت حذف شد');
+    }
+
+    public function default(Lottery $lottery)
+    {
+        $lottery->toggleDefault();
+
+        return redirect()->route('lottery.index');
     }
 }
