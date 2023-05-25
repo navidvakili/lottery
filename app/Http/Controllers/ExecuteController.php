@@ -11,7 +11,11 @@ class ExecuteController extends Controller
     public function index()
     {
         $lottery_default = Lottery::where('default', 1)->first();
+        if($lottery_default !== null){
         $lottery_members = LotteryMember::where('lottery_id', $lottery_default->id)->paginate(20);
+        }
+        else {$lottery_members = null;}
+        
         return view('dashboard', compact('lottery_default', 'lottery_members'));
     }
 
@@ -26,7 +30,7 @@ class ExecuteController extends Controller
 
         $num = $request->max_vahed - $request->min_vahed + 1;
 
-        $peoples = $lottery_default->group->members->shuffle();
+        $peoples = $lottery_default->group->members->where('group_id', $lottery_default->group_id)->shuffle();
 
 
         $lottered_num = 0;

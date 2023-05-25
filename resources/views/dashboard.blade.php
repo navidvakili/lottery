@@ -51,6 +51,7 @@
                         <td>{{ $item->client->name }}</td>
                         <td>{{ $item->vahed }}</td>
                     </tr>
+                    @php($key++)
                     @endforeach
                 </tbody>
             </table>
