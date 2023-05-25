@@ -44,9 +44,11 @@ class LotteryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Lottery $lottery)
     {
-        //
+        $lottery_members = LotteryMember::where('lottery_id', $lottery->id)->paginate(20);
+        
+        return view('lottery_show', compact('lottery_members', 'lottery'));
     }
 
     /**
@@ -79,9 +81,9 @@ class LotteryController extends Controller
     {
         $lottery_members = LotteryMember::where('lottery_id', $lottery->id)->count();
 
-        if ($lottery_members > 0)
-            return redirect()->route('lottery.index')->withErrors('بدلیل وجود تعدادی متقاضی در این قرعه کشی، امکان حذف وجود ندارد');
-
+        //if ($lottery_members > 0)
+           // return redirect()->route('lottery.index')->withErrors('بدلیل وجود تعدادی متقاضی در این قرعه کشی، امکان حذف وجود ندارد');
+LotteryMember::where('lottery_id', $lottery->id)->delete();
         $lottery->delete();
 
         return redirect()->route('lottery.index')->with('message', 'قرعه کشی ' . $lottery->title . ' با موفقیت حذف شد');
