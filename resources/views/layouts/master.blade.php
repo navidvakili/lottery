@@ -35,6 +35,12 @@
                                         <li><a href="{{ route('groups.index') }}" class="dropdown-item"><i class="fas fa-database"></i> گروه ها و متقاضیان</a></li>
                                         <div class="dropdown-divider"></div>
                                         <li><a href="{{ route('excel.import') }}" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> بارگذاری متقاضیان</a></li>
+                                        <div class="dropdown-divider"></div>
+                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> خروج</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                            </form>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
