@@ -21,17 +21,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ExecuteController::class, 'index'])->name('exceute.index');
-Route::get('/dashboard', [ExecuteController::class, 'index'])->name('exceute.index');
-Route::post('/', [ExecuteController::class, 'store'])->name('execute.store');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [ExecuteController::class, 'index'])->name('exceute.index');
+    Route::get('/dashboard', [ExecuteController::class, 'index'])->name('exceute.index');
+    Route::post('/', [ExecuteController::class, 'store'])->name('execute.store');
 
-Route::resource('groups', GroupController::class);
+    Route::resource('groups', GroupController::class);
 
-Route::resource('lottery', LotteryController::class);
-Route::get('lottery/default/{lottery}', [LotteryController::class, 'default'])->name('lottery.default');
+    Route::resource('lottery', LotteryController::class);
+    Route::get('lottery/default/{lottery}', [LotteryController::class, 'default'])->name('lottery.default');
 
-Route::get('excel', [ExcelController::class, 'import'])->name('excel.import');
-Route::post('excel', [ExcelController::class, 'store'])->name('excel.store');
+    Route::get('excel', [ExcelController::class, 'import'])->name('excel.import');
+    Route::post('excel', [ExcelController::class, 'store'])->name('excel.store');
 
-Route::get('clients/{group}', [ClientController::class, 'index'])->name('clients.index');
-Route::delete('clients/{client}/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
+    Route::get('clients/{group}', [ClientController::class, 'index'])->name('clients.index');
+    Route::delete('clients/{client}/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
+});
