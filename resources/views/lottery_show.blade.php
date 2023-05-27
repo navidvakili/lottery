@@ -6,8 +6,8 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="card">
-            <div class="card-header">
-               
+            <div class="card-header" style="text-align: left;">
+                <a href="{{ route('excel.export', $lottery->id) }}" class="btn btn-info">خروجی اکسل</a>
             </div>
             <div class="card-body">
                 <!-- <p class="card-title">Add class <code>.table-striped</code> inside table element</p> -->

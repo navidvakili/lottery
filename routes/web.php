@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('excel', [ExcelController::class, 'import'])->name('excel.import');
     Route::post('excel', [ExcelController::class, 'store'])->name('excel.store');
+    Route::get('export/{lottery}', [ExcelController::class, 'export'])->name('excel.export');
 
     Route::get('clients/{group}', [ClientController::class, 'index'])->name('clients.index');
     Route::delete('clients/{client}/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
