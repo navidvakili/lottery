@@ -65,8 +65,11 @@ class ExecuteController extends Controller
             }
             if ($vahed !== null) {
                 $done = LotteryMember::create(['lottery_id' => $lottery_default->id, 'client_id' => $people->id, 'vahed' => $vahed]);
-                $sms = new Sms($people->mobile);
-                $send = $sms->sendByPattern('ihbmplfpllrjzfi', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
+
+                if ($people->mobile != null) {
+                    $sms = new Sms($people->mobile);
+                    $send = $sms->sendByPattern('ihbmplfpllrjzfi', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
+                }
                 $lottered_num++;
             }
             if ($num == $lottered_num) break;
