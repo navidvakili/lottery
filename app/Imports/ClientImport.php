@@ -42,6 +42,7 @@ class ClientImport implements ToCollection, WithChunkReading, WithStartRow
                 $user->group_id = $this->group_id;
                 $user->name = $name;
                 $user->nationalcode = intval($national_code);
+                $user->mobile = intval($mobile);
                 $user->save();
             }
         }
