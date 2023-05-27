@@ -17,8 +17,12 @@
 <body>
     <div class="background-radial-gradient wrapper">
         <div id="body" class="active">
+
             <!-- navbar navigation component -->
             <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <div style="float:right">
+                    <img src="/assets/img/logo_maskan.png" alt="">
+                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ms-auto">
                         <li class="nav-item dropdown">
@@ -36,7 +40,7 @@
                                         <div class="dropdown-divider"></div>
                                         <li><a href="{{ route('excel.import') }}" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> بارگذاری متقاضیان</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> خروج</a>
+                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item"><i class="fas fa-power-off"></i> خروج</a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                                 @csrf
                                             </form>
