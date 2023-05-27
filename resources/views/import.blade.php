@@ -20,7 +20,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="title" class="form-label">فایل اکسل (دارای دو ستون به ترتیب: شماره ملی، نام و نام خانوادگی)</label>
+                        <label for="title" class="form-label">فایل اکسل (دارای سه ستون به ترتیب: شماره ملی، نام و نام خانوادگی و شماره موبایل)</label>
                         <input type="file" name="file" class="form-control" required="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                     </div>
                     <div class="mb-3">

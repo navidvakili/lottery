@@ -14,4 +14,9 @@ class LotteryMember extends Model
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }
+
+    public function lottery()
+    {
+        return $this->belongsTo(Lottery::class);
+    }
 }

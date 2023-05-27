@@ -31,10 +31,11 @@ class ClientImport implements ToCollection, WithChunkReading, WithStartRow
 
         foreach ($columns as $k => $column) {
             $national_code = $column[0];
-            $name =  $column[1]??'';
+            $name =  $column[1] ?? '';
+            $mobile =  $column[2] ?? '';
 
             $user = Client::where('nationalcode', $national_code)
-            ->where('group_id', $this->group_id)->first();
+                ->where('group_id', $this->group_id)->first();
 
             if ($user === null) {
                 $user = new Client();
