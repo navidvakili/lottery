@@ -71,17 +71,28 @@
                             <div class="card bg-glass">
                                 <div class="card-body px-4 py-5 px-md-5">
                                     <h4 class="my-5 display-7 fw-bold ls-tight" style="text-align: center;">ورود به سامانه قرعه کشی </h4>
-                                    <form>
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
                                         <!-- Username input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="username" class="form-control" autocomplete="off" />
-                                            <label class="form-label" for="form3Example3">نام کاربری</label>
+                                            <input type="text" id="username" name="username" class="@error('username') is-invalid @enderror form-control" autocomplete="off" />
+                                            <label class="form-label" for="username">نام کاربری</label>
+                                            @error('username')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
 
                                         <!-- Password input -->
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example4" class="form-control" />
-                                            <label class="form-label" for="form3Example4">گذرواژه</label>
+                                            <input type="password" id="form3Example4" name="password" class="form-control" />
+                                            <label class="form-label @error('password') is-invalid @enderror" for="form3Example4">گذرواژه</label>
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
 
                                         <!-- Submit button -->

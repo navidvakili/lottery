@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ExecuteController::class, 'index'])->name('exceute.index');
+Route::get('/dashboard', [ExecuteController::class, 'index'])->name('exceute.index');
 Route::post('/', [ExecuteController::class, 'store'])->name('execute.store');
 
 Route::resource('groups', GroupController::class);
