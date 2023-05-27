@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\Sms;
 use App\Models\Lottery;
 use App\Models\LotteryMember;
 use Illuminate\Http\Request;
@@ -11,11 +12,12 @@ class ExecuteController extends Controller
     public function index()
     {
         $lottery_default = Lottery::where('default', 1)->first();
-        if($lottery_default !== null){
-        $lottery_members = LotteryMember::where('lottery_id', $lottery_default->id)->paginate(20);
+        if ($lottery_default !== null) {
+            $lottery_members = LotteryMember::where('lottery_id', $lottery_default->id)->paginate(20);
+        } else {
+            $lottery_members = null;
         }
-        else {$lottery_members = null;}
-        
+
         return view('dashboard', compact('lottery_default', 'lottery_members'));
     }
 
@@ -62,7 +64,9 @@ class ExecuteController extends Controller
                 if ($check == 0) break;
             }
             if ($vahed !== null) {
-                LotteryMember::create(['lottery_id' => $lottery_default->id, 'client_id' => $people->id, 'vahed' => $vahed]);
+                $done = LotteryMember::create(['lottery_id' => $lottery_default->id, 'client_id' => $people->id, 'vahed' => $vahed]);
+                $sms = new Sms($people->mobile);
+                $send = $sms->sendByPattern('ihbmplfpllrjzfi', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
                 $lottered_num++;
             }
             if ($num == $lottered_num) break;
