@@ -12,9 +12,9 @@ use IPPanel\Errors\ResponseCodes;
 
 class Sms
 {
-    private string $apikey = "Z_vShI3DNoqb9_ildkEDOLjugo4oWvPimsNt_afeSFQ=";
+    private string $apikey = "NiU_VaTd-NdStNvnO3n2yOGTzMSRJBdHBx09TnDRr-U=";
     private string $url = "http://rest.ippanel.com";
-    private string $sender_number = "10003538264099";
+    private string $sender_number = "+98100020400";
     private string $mobile;
     public function __construct(string $mobile)
     {

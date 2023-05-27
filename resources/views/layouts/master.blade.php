@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="background-radial-gradient wrapper">
         <div id="body" class="active">
             <!-- navbar navigation component -->
             <nav class="navbar navbar-expand-lg navbar-white bg-white">
