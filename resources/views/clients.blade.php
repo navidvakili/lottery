@@ -40,12 +40,13 @@
                                     @csrf @method('DELETE')
                                 </form>
                             </tr>
+                            @php($key++)
                             @endforeach
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-center">
-                {!! $clients->links( "pagination::bootstrap-4") !!}
-            </div>
+                        {!! $clients->links( "pagination::bootstrap-4") !!}
+                    </div>
                 </div>
             </div>
         </div>

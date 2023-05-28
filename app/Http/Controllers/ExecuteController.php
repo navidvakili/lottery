@@ -13,7 +13,7 @@ class ExecuteController extends Controller
     {
         $lottery_default = Lottery::where('default', 1)->first();
         if ($lottery_default !== null) {
-            $lottery_members = LotteryMember::where('lottery_id', $lottery_default->id)->paginate(20);
+            $lottery_members = LotteryMember::where('lottery_id', $lottery_default->id)->paginate(40);
         } else {
             $lottery_members = null;
         }
