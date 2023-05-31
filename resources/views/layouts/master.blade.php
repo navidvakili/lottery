@@ -36,6 +36,8 @@
                                         <div class="dropdown-divider"></div>
                                         <li><a href="{{ route('lottery.index') }}" class="dropdown-item"><i class="fas fa-list"></i> فهرست قرعه کشی</a></li>
                                         <div class="dropdown-divider"></div>
+                                        <li><a href="{{ route('lottery.excel.import') }}" class="dropdown-item"><i class="fas fa-list"></i> بارگذاری قرعه کشی انجام شده</a></li>
+                                        <div class="dropdown-divider"></div>
                                         <li><a href="{{ route('groups.index') }}" class="dropdown-item"><i class="fas fa-database"></i> گروه ها و متقاضیان</a></li>
                                         <div class="dropdown-divider"></div>
                                         <li><a href="{{ route('excel.import') }}" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> بارگذاری متقاضیان</a></li>

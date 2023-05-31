@@ -5,9 +5,7 @@ use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ExecuteController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LotteryController;
-use App\Models\Group;
-use App\Models\Lottery;
-use App\Models\LotteryMember;
+use App\Http\Controllers\LotteryExcelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,12 +26,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('groups', GroupController::class);
 
+    Route::get('lottery/excel', [LotteryExcelController::class, 'import'])->name('lottery.excel.import');
+    Route::post('lottery/excel', [LotteryExcelController::class, 'store'])->name('lottery.excel.store');
+
     Route::resource('lottery', LotteryController::class);
     Route::get('lottery/default/{lottery}', [LotteryController::class, 'default'])->name('lottery.default');
 
     Route::get('excel', [ExcelController::class, 'import'])->name('excel.import');
     Route::post('excel', [ExcelController::class, 'store'])->name('excel.store');
     Route::get('export/{lottery}', [ExcelController::class, 'export'])->name('excel.export');
+
+
 
     Route::get('clients/{group}', [ClientController::class, 'index'])->name('clients.index');
     Route::delete('clients/{client}/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');

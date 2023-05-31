@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'قرعه کشی جدید')
+@section('page_title', 'بارگذاری متقاضیان')
 
 @section('content')
 <x-alert :messages="$errors->any()?$errors:session()->get('message')" />
