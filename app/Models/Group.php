@@ -14,4 +14,9 @@ class Group extends Model
     {
         return $this->hasMany(Client::class, 'group_id', 'id');
     }
+
+    public function lottery()
+    {
+        return $this->hasMany(Lottery::class, 'group_id', 'id');
+    }
 }

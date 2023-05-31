@@ -14,7 +14,7 @@ class Client extends Model
         return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 
-    public function lottery()
+    public function lotteryMember()
     {
         return $this->hasMany(LotteryMember::class, 'client_id', 'id');
     }
