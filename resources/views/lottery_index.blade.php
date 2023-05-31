@@ -37,14 +37,14 @@
                                     <a href="{{ route('lottery.show', $item->id) }}">نتایج</a> |
                                     <a href="{{ route('lottery.sms', $item->id) }}" onclick="event.preventDefault(); if(confirm('آیا از ارسال پیامک این قرعه کشی مطمئن هستید?')){
                                                                                                                 document.getElementById(
-                                                                                                                  'delete-form-{{ $item->id }}').submit();}">ارسال پیامک</a> |
+                                                                                                                  'sms-form-{{ $item->id }}').submit();}">ارسال پیامک</a> |
                                     <a href="{{ route('lottery.index') }}" onclick="event.preventDefault(); if(confirm('آیا از حذف مطمئن هستید?')){
                                                                                                                 document.getElementById(
                                                                                                                   'delete-form-{{ $item->id }}').submit();}">
                                         حذف
                                     </a>
                                 </td>
-                                <form id="delete-form-{{ $item->id }}" + action="{{ route('lottery.sms', $item->id) }}" method="post">
+                                <form id="sms-form-{{ $item->id }}" + action="{{ route('lottery.sms', $item->id) }}" method="post">
                                     @csrf
                                 </form>
                                 <form id="delete-form-{{ $item->id }}" + action="{{ route('lottery.destroy', $item->id) }}" method="post">
