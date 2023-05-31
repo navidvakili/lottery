@@ -67,8 +67,8 @@ class ExecuteController extends Controller
                 $done = LotteryMember::create(['lottery_id' => $lottery_default->id, 'client_id' => $people->id, 'vahed' => $vahed]);
 
                 if ($people->mobile != null) {
-                    $sms = new Sms($people->mobile);
-                    $send = $sms->sendByPattern('42g8dtgu3o3ohv7', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
+                    // $sms = new Sms($people->mobile);
+                    // $send = $sms->sendByPattern('42g8dtgu3o3ohv7', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
                 }
                 $lottered_num++;
             }
