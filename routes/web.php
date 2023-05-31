@@ -27,10 +27,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('groups', GroupController::class);
 
-    Route::get('lottery/excel', [LotteryExcelController::class, 'import'])->name('lottery.excel.import');
-    Route::post('lottery/excel', [LotteryExcelController::class, 'store'])->name('lottery.excel.store');
+    Route::get('excel/lottery', [LotteryExcelController::class, 'import'])->name('lottery.excel.import');
+    Route::post('excel/lottery', [LotteryExcelController::class, 'store'])->name('lottery.excel.store');
 
-    Route::post('lottery/sms/{lottery}', [SmsController::class, 'lottery_send'])->name('lottery.sms');
+    Route::post('sms/lottery/{lottery}', [SmsController::class, 'lottery_send'])->name('lottery.sms');
 
     Route::resource('lottery', LotteryController::class);
     Route::get('lottery/default/{lottery}', [LotteryController::class, 'default'])->name('lottery.default');
