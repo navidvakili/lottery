@@ -74,10 +74,11 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        $members = Client::where('group_id', $group->id)->count();
+        $members = Client::whereHas('lottery')->where('group_id', $group->id)->count();
         if ($members > 0)
-            return redirect()->route('groups.index')->withErrors('بدلیل وجود تعدادی متقاضی در این گروه، امکان حذف وجود ندارد');
+            return redirect()->route('groups.index')->withErrors('بدلیل وجود تعدادی متقاضی در قرعه کشی، امکان حذف وجود ندارد');
 
+        Client::where('group_id', $group->id)->delete();
         $group->delete();
 
         return redirect()->route('groups.index')->with('message', 'گروه ' . $group->title . ' با موفقیت حذف شد');
