@@ -68,7 +68,7 @@ class ExecuteController extends Controller
 
                 if ($people->mobile != null) {
                     $sms = new Sms($people->mobile);
-                    $send = $sms->sendByPattern('ihbmplfpllrjzfi', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
+                    $send = $sms->sendByPattern('42g8dtgu3o3ohv7', ['name' => $people->name, 'vahed' => $vahed, 'tarh' => $done->lottery->title]);
                 }
                 $lottered_num++;
             }

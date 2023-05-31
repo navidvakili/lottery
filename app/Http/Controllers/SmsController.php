@@ -15,7 +15,7 @@ class SmsController extends Controller
         foreach ($executes as $row) {
             if ($row->client->mobile != null) {
                 $sms = new Sms($row->client->mobile);
-                $sms->sendByPattern('ihbmplfpllrjzfi', ['name' => $row->client->name, 'vahed' => $row->vahed, 'tarh' => $lottery->title]);
+                $sms->sendByPattern('42g8dtgu3o3ohv7', ['name' => $row->client->name, 'vahed' => $row->vahed, 'tarh' => $lottery->title]);
             }
         }
 
