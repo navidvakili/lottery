@@ -17,6 +17,11 @@ class Lottery extends Model
         return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 
+    public function exceutes()
+    {
+        return $this->hasMany(LotteryMember::class, 'lottery_id', 'id');
+    }
+
     public function toggleDefault()
     {
         if ($this->default != 1) {

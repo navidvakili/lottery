@@ -6,6 +6,7 @@ use App\Http\Controllers\ExecuteController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LotteryController;
 use App\Http\Controllers\LotteryExcelController;
+use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('lottery/excel', [LotteryExcelController::class, 'import'])->name('lottery.excel.import');
     Route::post('lottery/excel', [LotteryExcelController::class, 'store'])->name('lottery.excel.store');
+
+    Route::post('lottery/sms/{lottery}', [SmsController::class, 'lottery_send'])->name('lottery.sms');
 
     Route::resource('lottery', LotteryController::class);
     Route::get('lottery/default/{lottery}', [LotteryController::class, 'default'])->name('lottery.default');
